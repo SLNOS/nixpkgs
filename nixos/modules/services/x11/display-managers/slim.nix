@@ -13,6 +13,7 @@ let
       xauth_path ${dmcfg.xauthBin}
       default_xserver ${dmcfg.xserverBin}
       xserver_arguments ${toString dmcfg.xserverArgs}
+      themes_dir ${slimThemesDir}
       sessiondir ${dmcfg.session.desktops}/share/xsessions
       login_cmd exec ${pkgs.runtimeShell} ${dmcfg.session.wrapper} "%session"
       halt_cmd ${config.systemd.package}/sbin/shutdown -h now
@@ -128,19 +129,7 @@ in
 
   config = mkIf cfg.enable {
 
-    services.xserver.displayManager.job =
-      { environment =
-          { SLIM_CFGFILE = slimConfig;
-            SLIM_THEMESDIR = slimThemesDir;
-          };
-        execCmd = "exec ${pkgs.slim}/bin/slim";
-      };
-
-    services.xserver.displayManager.sessionCommands =
-      ''
-        # Export the config/themes for slimlock.
-        export SLIM_THEMESDIR=${slimThemesDir}
-      '';
+    services.xserver.displayManager.job.execCmd = "exec ${pkgs.slim}/bin/slim -n -s -c ${slimConfig}";
 
     # Allow null passwords so that the user can login as root on the
     # installation CD.
