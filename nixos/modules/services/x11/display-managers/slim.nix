@@ -129,6 +129,9 @@ in
 
   config = mkIf cfg.enable {
 
+    # Use the default theme when using autologin to save space.
+    services.xserver.displayManager.slim.theme = mkIf cfg.autoLogin null;
+
     services.xserver.displayManager.job.execCmd = "exec ${pkgs.slim}/bin/slim -n -s -c ${slimConfig}";
 
     # Allow null passwords so that the user can login as root on the
