@@ -177,7 +177,16 @@ stdenv.mkDerivation (rec {
   '';
 
   nativeBuildInputs =
-    [ autoconf213 which gnused pkgconfig perl python2 cargo rustc ]
+    [
+      autoconf213
+      cargo
+      gnused
+      perl
+      pkgconfig
+      python2
+      rustc
+      which
+    ]
     ++ lib.optional gtk3Support wrapGAppsHook
     ++ lib.optionals stdenv.isDarwin [ xcbuild rsync ]
     ++ lib.optional  (lib.versionAtLeast ffversion "61.0") python3
