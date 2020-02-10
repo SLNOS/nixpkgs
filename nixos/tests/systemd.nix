@@ -19,7 +19,7 @@ import ./make-test-python.nix ({ pkgs, ... }: {
     systemd.extraConfig = "DefaultEnvironment=\"XXX_SYSTEM=foo\"";
     systemd.user.extraConfig = "DefaultEnvironment=\"XXX_USER=bar\"";
     services.journald.extraConfig = "Storage=volatile";
-    test-support.displayManager.auto.user = "alice";
+    services.xserver.displayManager.auto.user = "alice";
 
     systemd.shutdown.test = pkgs.writeScript "test.shutdown" ''
       #!${pkgs.stdenv.shell}

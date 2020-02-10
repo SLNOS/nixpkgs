@@ -11,7 +11,7 @@ with lib;
   machine = {
     imports = [ ./common/x11.nix ./common/user-account.nix ];
 
-    test-support.displayManager.auto.user = "bob";
+    services.xserver.displayManager.auto.user = "bob";
 
     programs.yabar.enable = true;
     programs.yabar.bars = {

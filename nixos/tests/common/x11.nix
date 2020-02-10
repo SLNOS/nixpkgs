@@ -1,14 +1,9 @@
 { lib, ... }:
 
-{
-  imports = [
-    ./auto.nix
-  ];
-
-  services.xserver.enable = true;
+{ services.xserver.enable = true;
 
   # Automatically log in.
-  test-support.displayManager.auto.enable = true;
+  services.xserver.displayManager.auto.enable = true;
 
   # Use IceWM as the window manager.
   # Don't use a desktop manager.

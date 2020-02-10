@@ -10,12 +10,12 @@ with lib;
     simple = {
       imports = [ ./common/x11.nix ./common/user-account.nix ];
       programs.xss-lock.enable = true;
-      test-support.displayManager.auto.user = "alice";
+      services.xserver.displayManager.auto.user = "alice";
     };
 
     custom_lockcmd = { pkgs, ... }: {
       imports = [ ./common/x11.nix ./common/user-account.nix ];
-      test-support.displayManager.auto.user = "alice";
+      services.xserver.displayManager.auto.user = "alice";
 
       programs.xss-lock = {
         enable = true;

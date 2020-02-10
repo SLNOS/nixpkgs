@@ -5,7 +5,7 @@ with lib;
 let
 
   dmcfg = config.services.xserver.displayManager;
-  cfg = config.test-support.displayManager.auto;
+  cfg = dmcfg.auto;
 
 in
 
@@ -15,7 +15,7 @@ in
 
   options = {
 
-    test-support.displayManager.auto = {
+    services.xserver.displayManager.auto = {
 
       enable = mkOption {
         default = false;
